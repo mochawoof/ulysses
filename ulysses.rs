@@ -32791,13 +32791,33 @@ fn main() {
     feel my breasts all perfume yes and his heart was going like mad and
     yes I said yes I will Yes.";
     let mut start: usize = 0;
-    let mut end: usize = book.len();
-    if args.len() > 1 {
-        start = args[1].parse::<usize>().unwrap();
-        if args.len() > 2 {
-            end = args[2].parse::<usize>().unwrap();
+    let mut n_chars: usize = book.len();
+    let mut read_mode: bool = false;
+    let mut args_add: usize = 1;
+    if args.len() > args_add {
+        if args[1] == "read" {
+            args_add += 1;
+            read_mode = true;
+        }
+        if args.len() > args_add {
+            n_chars = args[args_add].parse::<usize>().unwrap();
+            if args.len() > args_add + 1 {
+                start = args[args_add + 1].parse::<usize>().unwrap();
+            }
         }
     }
-    let subbed_book: &str = book.substring(start, end);
-    println!("{subbed_book}");
+    if !read_mode {
+        let subbed_book: &str = book.substring(start, n_chars + start);
+        println!("{subbed_book}");
+    } else {
+        let mut page: usize = 1;
+        let og_start: usize = start;
+        while start < book.len() {
+            let page_subbed_book: &str = book.substring(start, n_chars + start);
+            println!("{page_subbed_book}");
+            press_btn_continue::wait("").unwrap();
+            start = (n_chars * page) + og_start;
+            page += 1;
+        }
+    }
 }

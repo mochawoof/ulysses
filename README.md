@@ -4,4 +4,14 @@ it has 2 command line arguments, the first specifying the number of characters y
 
 if you specify the argument "read" before the other two, it'll progress by the number you specify each time you hit enter instead of just cutting everything else off.
 
+examples:
+
+`ulysses 100`
+
+`ulysses 100 5`
+
+`ulysses read 100`
+
+`ulysses read 100 5`
+
 sourced from Project Gutenberg: https://www.gutenberg.org/ebooks/4300
